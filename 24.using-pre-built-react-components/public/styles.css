@@ -8,7 +8,10 @@ html {
 }
 body {
   background: #eee;
-  padding: 0 16px;
+ background-color: #eeebff;
+background-image: url("https://www.transparenttextures.com/patterns/arches.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+padding: 0 16px;
 }
 
 header {
