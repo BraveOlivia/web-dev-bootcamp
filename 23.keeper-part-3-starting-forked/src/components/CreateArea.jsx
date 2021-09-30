@@ -9,57 +9,63 @@ function CreateArea(props) {
     content: "",
   });
 
-  function handleTitle(event) {
-    const input = event.target.value;
-    setNote((prev) => {
-      return {
-        title: input,
-        content: prev.content,
-      };
-    });
-  }
+  // function handleTitle(event) {
+  //   const input = event.target.value;
+  //   setNote((prev) => {
+  //     return {
+  //       title: input,
+  //       content: prev.content,
+  //     };
+  //   });
+  // }
 
-  function handleContent(event) {
-    const input = event.target.value;
-    setNote((prev) => {
-      return {
-        title: prev.title,
-        content: input,
-      };
-    });
-  }
+  // function handleContent(event) {
+  //   const input = event.target.value;
+  //   setNote((prev) => {
+  //     return {
+  //       title: prev.title,
+  //       content: input,
+  //     };
+  //   });
+  // }
 
-  // Prevent rerendering the website upon click the button which will invoke the 
+  // Prevent rerendering the website upon click the button which will invoke the
   // form submission behavior
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log("You clicked submit.");
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   console.log("You clicked submit.");
+  // }
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setNote((prevItems) => {
+      return { ...prevItems, [name]: value };
+    });
+  }
+
+  function submitNode(event) {
+    props.setItem(note);
+    setNote({ title: "", content: "" });
+    event.preventDefault();
   }
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <input
-          onChange={handleTitle}
+          onChange={handleChange}
           name="title"
           placeholder="Title"
           value={note.title}
         />
         <textarea
-          onChange={handleContent}
+          onChange={handleChange}
           name="content"
           placeholder="Take a note..."
           rows="3"
           value={note.content}
         />
-        <button
-          onClick={() => {
-            props.setItem(note);
-            setNote({ title: "", content: "" });
-          }}
-        >
-          Add
-        </button>
+        <button onClick={submitNode}>Add</button>
       </form>
     </div>
   );
